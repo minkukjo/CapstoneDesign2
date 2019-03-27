@@ -12,7 +12,9 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.43.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
