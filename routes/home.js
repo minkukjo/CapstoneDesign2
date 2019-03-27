@@ -10,6 +10,12 @@ router.get("/", function(req, res, next) {
   });
 });
 
+router.get("/ajax", function(req, res, next) {
+  Order.findAll({}).then(result => {
+    res.send(result);
+  });
+});
+
 router.post("/", async (req, res, next) => {
   try {
     const order = await Order.create({
