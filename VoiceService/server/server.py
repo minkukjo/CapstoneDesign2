@@ -3,7 +3,7 @@ from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = '/uploads'
-ALLOWED_EXTENSIONS = set(['m4a','txt'])
+ALLOWED_EXTENSIONS = set(['m4a','txt','wav'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -19,7 +19,5 @@ def upload_file():
         file.save(secure_filename(file.filename))
         print ('save success')
 
-app.run(debug=True)
-
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)
