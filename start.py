@@ -61,7 +61,7 @@ def run_quickstart():
     # Detects speech in the audio file
     response = client.recognize(config, audio)
 
-    API_HOST = 'http://localhost:8080'
+    API_HOST = 'http://34.80.206.42'
 
     for result in response.results:
         print('Transcript: {}'.format(result.alternatives[0].transcript))
