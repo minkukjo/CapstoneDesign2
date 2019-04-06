@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "ehdgns78!@",
+    "password": "test",
     "database": "iot",
-    "host": "127.0.0.1",
+    "host": "mysql-app.default.svc.cluster.local",
     "dialect": "mysql"
   },
   "test": {
