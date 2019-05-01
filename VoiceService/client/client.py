@@ -46,7 +46,7 @@ def startConnection():
     url = "http://127.0.0.1:5000/"
     print(url)
     
-    files = {'file': open(WAVE_OUTPUT_FILENAME, 'rb')}
+    files = {'file': open(WAVE_OUTPUT_FILENAME, 'rb'), 'fname': WAVE_OUTPUT_FILENAME}
 
     r = requests.post(url, files=files)
     r.text
