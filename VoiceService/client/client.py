@@ -1,16 +1,58 @@
 import sys
 import requests
+import pyaudio
+import wave
+import time
 
-if not len(sys.argv) is 4:
-    print ('argv #ip #port #fileName')
-    sys.exit()
+def record_sound():
+    FORMAT = pyaudio.paInt16
+    CHANNELS = 1  # only mono
+    RATE = 16000
+    CHUNK = 1024  # 스트림에서 읽는 프레임의 샘플 수
+    RECORD_SECONDS = 3  # 3초 녹음
+    now = time.localtime()
+    fileName = "%02d-%02d-%02d:%02d:%02d" % (now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec)
+    global WAVE_OUTPUT_FILENAME
+    WAVE_OUTPUT_FILENAME = fileName+".wav"
 
-url = "http://"+sys.argv[1]+":"+sys.argv[2]+"/"
-print(url)
-#url = "http://13.125.167.133:5000/"
-files = {'file':open(sys.argv[3],'rb')}
+    audio = pyaudio.PyAudio()
 
-r = requests.post(url,files=files)
-r.text
+    # start Recording
+    stream = audio.open(format=FORMAT, channels=CHANNELS,
+                        rate=RATE, input=True,
+                        frames_per_buffer=CHUNK)
+    print("recording...")
+    frames = []
 
-print(r)
+    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+        data = stream.read(CHUNK)
+        frames.append(data)
+    print("finished recording")
+
+    # stop Recording
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
+
+    waveFile = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+    waveFile.setnchannels(CHANNELS)
+    waveFile.setsampwidth(audio.get_sample_size(FORMAT))
+    waveFile.setframerate(RATE)
+    waveFile.writeframes(b''.join(frames))
+    waveFile.close()
+
+def startConnection():
+
+    url = "http://127.0.0.1:5000/"
+    print(url)
+    
+    files = {'file': open(WAVE_OUTPUT_FILENAME, 'rb')}
+
+    r = requests.post(url, files=files)
+    r.text
+    print(r)
+
+if __name__ == '__main__':
+    record_sound()
+    startConnection()
+
