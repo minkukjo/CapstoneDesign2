@@ -1,0 +1,6 @@
+sudo docker build -t server .
+sudo docker run -p 5000:5000 -it server
+
+#virtual env
+source env/bin/activate
+deactivate

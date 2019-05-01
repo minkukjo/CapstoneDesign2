@@ -2,7 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-TARGET_HOST = ''
+#TARGET_HOST = ''
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = set(['m4a','txt','wav'])
 
@@ -21,8 +21,10 @@ def upload_file():
 		file = request.files['file']
 		
 		#UPLOAD_FOLDER is not a configuration option recongnized by Flask
+		print (os.path.join(app.config['UPLOAD_FOLDER']))
+		#print (secure_filename(file.file_name))
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(file.filename)))
-
+		
 		#Replace ':' to "" for file name
 		wavFileName = file.filename
 		wavFileName = wavFileName.replace(":","")
@@ -67,7 +69,7 @@ def run_quickstart(wavFileName):
 	response = client.recognize(config, audio)
 
 	for result in response.results:
-		result = request.post(TARGET_HOST, {'word': result.alternatives[0].transcript})
+		#result = request.post(TARGET_HOST, {'word': result.alternatives[0].transcript})
 		print('Transcript: {}'.format(result.alternatives[0].transcript))
 
 	# [END speech_quickstart]
