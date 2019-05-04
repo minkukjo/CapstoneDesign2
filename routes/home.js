@@ -30,7 +30,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.delete("/delete/:id", function(req, res, next) {
+router.post("/delete/:id", function(req, res, next) {
   let orderID = req.params.id;
 
   Order.destroy({
