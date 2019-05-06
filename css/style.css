@@ -91,6 +91,7 @@ button {
   padding: 10px 0px;
   border-radius: 3px;
   background-color: white;
+  cursor: pointer;
 }
 
 .orders__header {
@@ -108,6 +109,5 @@ button {
 }
 
 .checked {
-  text-decoration: line-through;
-  opacity: 0.8;
+  color: red;
 }

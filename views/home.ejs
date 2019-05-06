@@ -25,7 +25,7 @@
     </div>
     <ul class="orders__list">
       <% for(let order of orders) { %>
-      <li class="orders__order order"  onClick="doCheck()">
+      <li class="orders__order order" >
         <div class="orders__column">
           <div class="order__number item"><%= order.id %>
           </div>
@@ -33,7 +33,7 @@
             <%= order.content %>
           </div>
           <div class="order__createdAt item">
-            <%= order.createdAt.toLocaleTimeString() %>
+            <%= order.createdAt.toLocaleTimeString('ko-KR') %>
           </div>
           <div class="order__buttons item">
             <form id="form-delete" action="/delete/<%=order.id%>" method="post">

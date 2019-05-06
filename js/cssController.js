@@ -1,9 +1,7 @@
-function doCheck() {
-  console.log("hey");
-  let check = document.getElementsByClassName("orders__order order")[0]
-    .classList;
-  console.log(check);
-  if (check.contains("checked")) {
-    check.remove("checked");
-  } else check.add("checked");
-}
+$(document).on("click", ".orders__order.order", function(e) {
+  var closeParent = $(e.target).closest("li");
+  if(!closeParent.hasClass("checked"))
+  closeParent.addClass("checked");
+  else
+  closeParent.removeClass("checked");
+});
