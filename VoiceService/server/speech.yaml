@@ -1,0 +1,34 @@
+metadata:
+        name: api-server
+spec:
+        selector:
+                app: sangmin-app
+        ports:
+                - protocol: "TCP"
+                  port: 5000
+                  targetPort: 5000
+                  name: http
+        type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: sangmin-app
+        labels:
+                app: sangmin-app
+spec:
+        selector:
+                matchLabels:
+                        app: sangmin-app
+        replicas: 1
+        template:
+                metadata:
+                        labels:
+                                app: sangmin-app
+                spec:
+                        containers:
+                                - name: api-server
+                                  image: sangmin95/speech_server:5.0
+                                  ports:
+                                          - containerPort: 5000
+                                            name: http

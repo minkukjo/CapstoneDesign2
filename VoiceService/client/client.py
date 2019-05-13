@@ -43,14 +43,15 @@ def record_sound():
 
 def startConnection():
 
-    url = "http://13.124.216.150:5000/"
+    url = "http://35.236.152.72:5000/"
+    #url = "http://localhost:5000/"
     print(url)
     
-    files = {'file': open(WAVE_OUTPUT_FILENAME, 'rb')}
+    files = {'file': open(WAVE_OUTPUT_FILENAME, 'rb'), 'fname': WAVE_OUTPUT_FILENAME}
 
     r = requests.post(url, files=files)
     r.text
-    print(r)
+    #print(r)
 
 if __name__ == '__main__':
     record_sound()
