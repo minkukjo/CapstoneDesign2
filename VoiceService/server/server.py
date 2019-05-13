@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for
+from flask import Flask, flash, request, redirect, url_for,Response,json
 from werkzeug.utils import secure_filename
 
 #TARGET_HOST = ''
@@ -8,11 +8,6 @@ ALLOWED_EXTENSIONS = set(['m4a','txt','wav'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# def allowed_file(filename):
-# 	print ("allowed_file")
-# 	return '.' in filename and \
-# 		filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/',methods=['GET','POST'])
 def upload_file():
@@ -30,8 +25,20 @@ def upload_file():
 		wavFileName = wavFileName.replace(":","")
 		print (wavFileName+' save success')
 
-		run_quickstart(wavFileName)
+		encodeText = run_quickstart(wavFileName)
+		# data = {
+		# 	'msg' : encodeText
+		# }
+		# js = json.dumps(data)
+		# resp = Response(js,status=200,mimetype='application/json')
+		# return resp
+		#print("encodeText : "+encodeText)
 
+		f = open("result.txt", 'a')
+		f.write(str(encodeText))
+		f.close()
+		#else
+			
 	return 'OK'
 	
 	
@@ -71,6 +78,7 @@ def run_quickstart(wavFileName):
 	for result in response.results:
 		#result = request.post(TARGET_HOST, {'word': result.alternatives[0].transcript})
 		print('Transcript: {}'.format(result.alternatives[0].transcript))
+		return format(result.alternatives[0].transcript)
 
 	# [END speech_quickstart]
 
