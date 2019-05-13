@@ -80,7 +80,7 @@ def run_quickstart(wavFileName):
 		print('Transcript: {}'.format(result.alternatives[0].transcript))
 		return format(result.alternatives[0].transcript)
 
-	# [END speech_quickstart]
+# [END speech_quickstart]
 
 if __name__=='__main__':
 	app.run(host='0.0.0.0',port=5000,debug=True)
