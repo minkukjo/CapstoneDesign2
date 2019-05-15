@@ -1,0 +1,17 @@
+sudo docker build -t sangmin95/speech_server:1.0 .
+sudo docker run -p 5000:5000 -it server
+sudo docker push sangmin95/speech_server:1.0
+
+#virtual env
+source env/bin/activate
+deactivate
+
+export GOOGLE_APPLICATION_CREDENTIALS = /home/pi/api-project.json
+
+
+#kubernetes
+$ kubectl -n apiserver delete services --all
+kubectl -n apiserver delete deployments --all
+kubectl -n apiserver create -f speech.yaml
+kubectl exec -n apiserver sangmin-app-d69f4b5cc-6kr7p -it /bin/bash
+kubectl logs -f kubernetes-simple-app-57585656fc-rvqdm
