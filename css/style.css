@@ -1,0 +1,113 @@
+@import "reset.css";
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700&subset=korean");
+
+body {
+  background-color: #44cbe1;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 20px;
+}
+
+button {
+  background-color: #4cb5f5;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
+  outline: none;
+  border-width: 0;
+  transition: background-color 0.3s;
+}
+
+.orders__main {
+  text-align: center;
+  padding-bottom: 30px;
+  color: white;
+}
+
+.orders__wrapper {
+  margin: 0px 10px;
+  padding-bottom: 10px;
+}
+
+/*.orders {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 200px;
+}*/
+.orders {
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding-top: 2rem;
+  background-color: #40b2d9;
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    width: calc(100% - 2rem); // 양 옆에 1rem의 여백을 남기고 꽉 채워줍니다.
+  }
+}
+
+.orders__main {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.orders__order .order {
+  cursor: pointer;
+}
+.item {
+  display: inline-block;
+}
+
+.orders__header {
+  border-radius: 3px;
+  font-size: 24px;
+}
+
+.orders__header-number,
+.orders__header-order {
+  padding: 10px 0px;
+}
+.order__number,
+.orders__header-number.item {
+  width: 60px;
+  text-align: center;
+}
+
+.order__content,
+.orders__header-order.item {
+  width: 430px;
+  padding-left: 30px;
+}
+
+.order__createdAt,
+.orders__header-createdAt .item {
+  width: 150px;
+}
+
+.orders__order {
+  border: 2px solid #f7f7f7;
+  padding: 10px 0px;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.orders__header {
+  margin-top: 20px;
+  border: 1px solid #f7f7f7;
+  background-color: white;
+}
+
+.orders__buttons {
+  display: inline-block;
+}
+
+#form-delete {
+  display: inline-block;
+}
+
+.checked {
+  color: red;
+}
