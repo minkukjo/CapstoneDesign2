@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: mysql-app
+        labels:
+                app: mysql-app
+spec:
+        selector:
+                matchLabels:
+                        app: mysql-app
+        replicas: 1
+        template:
+                metadata:
+                        labels:
+                                app: mysql-app
+                spec:
+                        containers:
+                                - name: mysql-app
+                                  image: mysql:latest
+                                  env:
+                                          - name: "MYSQL_ROOT_PASSWORD"
+                                            value: "test"
+                                  ports:
+                                          - containerPort: 3306
+                                            name: http
+                                  volumeMounts:
+                                          - name: mysql
+                                            mountPath: "/var/lib/mysql"
+                        volumes:
+                                - name: mysql
+                                  emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+        name: mysql-app
+spec:
+        selector:
+                app: mysql-app
+        type: NodePort
+        ports:
+                - name: mysql-app
+                  port: 3306
+                  protocol: TCP
+                  targetPort: 3306
+                  nodePort: 30036
