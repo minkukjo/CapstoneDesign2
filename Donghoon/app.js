@@ -29,29 +29,6 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// app.use((err, req, res) => {
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get("env") === "development" ? err : {};
-//   res.status(err.status || 500);
-//   res.render("error");
-// });
-
-// app.listen(app.get("port"), () => {
-//   console.log(app.get("port"), "번 포트에서 대기 중");
-// });
-
-//app.post("/", (req, res) => {
-//  console.log(req.body.word);
-//   res.render("show", { word: req.body.word });
-//   res.render("show", {
-//     word: req.body.word
-//});
-// app.use((req, res, next) => {
-//   const err = new Error("Not Found");
-//   err.status = 404;
-//   next(err);
-// });
-
 app.listen(8080, () => {
   console.log(8080, "번 포트에서 대기중");
 });
