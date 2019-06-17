@@ -8,19 +8,9 @@ setInterval(function() {
     url: "/ajax",
     async: true,
     dataType: "json",
-
     success: function(data) {
-
-      //console.log(data.length);
-      //console.log(data);
       let createdString = new Date(data[data.length-1].createdAt);
       let LocaleTime = createdString.toLocaleTimeString('ko-KR');
-      //console.log(data[data.length-1].createdAt);
-      //console.log(typeof(data[data.length-1].createdAt));
-      console.log(LocaleTime);
-
-      //console.log(typeof(data[data.length-1].createAt));
-      //createdString = createdString.toLocaleTimeString();
       if (len < data.length) {
         $(".orders__list").append(
           `<li class="orders__order order"  onClick="doCheck()">
